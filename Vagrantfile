@@ -7,9 +7,6 @@ Vagrant.configure("2") do |config|
   # ip assignment
   config.vm.network "public_network", ip: '192.168.1.250'
   
-  # folder forwarding
-  config.vm.synced_folder ".", "/vagrant"
-
   # port forwarding
   config.vm.network "forwarded_port", guest: 22, host: 2222
   config.vm.network "forwarded_port", guest: 80, host: 8080
@@ -28,6 +25,8 @@ Vagrant.configure("2") do |config|
     sudo apt-get install -y docker-ce
     sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
     sudo chmod +x /usr/local/bin/docker-compose
-    cd /vagrant && docker-compose up
+    mkdir -p /home/vagrant/wireguard-pihole
+    curl -L "https://github.com/NupaZzz/WireGuard-with-Pi-hole/raw/main/docker-compose.yaml" -o /home/vagrant/wireguard-pihole/docker-compose.yaml
+    cd /home/vagrant/wireguard-pihole && docker-compose up
   SHELL
 end
