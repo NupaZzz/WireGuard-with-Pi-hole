@@ -4,13 +4,13 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/focal64"
 
-  # Назначение ip
-  config.vm.network "public_network", bridge: "Realtek PCIe 2.5GbE Family Controller", ip: '192.168.1.250'
+  # ip assignment
+  config.vm.network "public_network", ip: '192.168.1.250'
   
-  # Проброс папки
+  # folder forwarding
   config.vm.synced_folder ".", "/vagrant"
 
-  # Проброс портов
+  # port forwarding
   config.vm.network "forwarded_port", guest: 22, host: 2222
   config.vm.network "forwarded_port", guest: 80, host: 8080
   config.vm.network "forwarded_port", guest: 443, host: 8443
