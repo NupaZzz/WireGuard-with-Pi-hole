@@ -43,7 +43,7 @@ services:
       - 443:443
     environment:
       TZ: 'Europe/Minsk'
-      WEBPASSWORD: '1234'
+      WEBPASSWORD: 'your-password'
     volumes:
        - './etc-pihole/:/etc/pihole/'
        - './etc-dnsmasq.d/:/etc/dnsmasq.d/'
